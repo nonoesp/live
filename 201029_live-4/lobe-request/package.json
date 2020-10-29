@@ -1,0 +1,21 @@
+{
+  "name": "lobe-request",
+  "version": "1.0.0",
+  "description": "A post request to a Lobe Local API HTTP server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ts-node index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/superagent": "^4.1.10",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "superagent": "^5.3.1"
+  }
+}
