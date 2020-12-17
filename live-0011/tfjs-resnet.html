@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<style>* { font-family: 'Inter'; }</style>
+
+<h1>🧠 Loading ResNet50v2 from TensorFlowHub</h1>
+
+<p>👋🏻 Hey! You might want to open the JavaScript console to visualize the output.</p>
+
+<!--Scripts placed at the end so page loads faster-->
+<!-- Load TensorFlow.js -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+<!-- Define our custom code -->
+<script>
+    const name = "Nono";
+    console.log(`JavaScript & ${name} script says hello! 👋`);
+    
+    // Load ResNet and predict with random input
+    (async () => {
+        console.log(`Loading ResNet v2 50..`);
+        const resnet = await tf.loadGraphModel(
+            "https://tfhub.dev/google/tfjs-model/imagenet/resnet_v2_50/classification/3/default/1",
+            {fromTFHub: true }
+        );
+
+        // Pass a random input through the model
+        console.log(`Predicting..`);            
+        const zeros = tf.zeros([1, 224, 224, 3]);
+        const output = await resnet.predict(zeros);
+        
+        // Print Tensor preview
+        output.print();
+        
+        // Log Tensor
+        console.log(await output.array());
+        console.log(`Done!`);            
+    })();
+
+</script>
+
+</body>
+</html>

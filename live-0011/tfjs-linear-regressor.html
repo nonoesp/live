@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<style>* { font-family: 'Inter'; }</style>
+
+<h1>🧠 Training a Linear Regressor in TF.js</h1>
+
+<p>👋🏻 Hey! You might want to open the JavaScript console to visualize the output.</p>
+
+<!--Scripts placed at the end so page loads faster-->
+<!-- Load TensorFlow.js -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+<!-- Define our custom code -->
+<script>
+    const name = "Nono";
+    console.log(`JavaScript & ${name} script says hello! 👋`);
+    
+    // Define our TensorFlow model
+    const model = tf.sequential({
+        layers: [
+            tf.layers.dense({units: 1, inputShape: [1]})
+        ]
+    });
+
+    model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+
+    const onEpochEnd = (epoch, logs) => {
+        console.log(`Epoch ${epoch} Loss: ${logs.loss}`);
+        model.predict(tf.tensor2d([5], [1, 1])).print();
+    }
+
+    const xs = tf.tensor2d([1, 2, 3, 4, 12, -10], [6, 1]);
+    const ys = tf.tensor2d([1, 3, 5, 7, 23, -21], [6, 1]);
+
+    // Train the model using the data.
+    console.log(`Training the model..`);
+
+    const config = {
+        callbacks: {onEpochEnd},
+        epochs: 300
+    };
+
+    model.fit(xs, ys, config).then(() => {
+        model.predict(tf.tensor2d([5], [1, 1])).print();
+        console.log(`Epoch`);
+    });
+    console.log(`Done!`);
+
+    // Sample function to predict on the console
+    // (await model.predict(tf.tensor2d([5],[1,1])).array())[0][0]
+
+</script>
+
+</body>
+</html>
