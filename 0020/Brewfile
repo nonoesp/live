@@ -1,0 +1,77 @@
+tap "aws/tap"
+tap "bbc/audiowaveform"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "mongodb/brew"
+tap "shivammathur/php"
+brew "ack"
+brew "asciinema"
+brew "awscli"
+brew "libpng"
+brew "cairo"
+brew "pkg-config"
+brew "cask"
+brew "cocoapods"
+brew "curl"
+brew "dnsmasq", restart_service: true
+brew "docker", link: false
+brew "docker-compose", link: false
+brew "dockutil"
+brew "duti"
+brew "giflib"
+brew "harfbuzz"
+brew "jpeg"
+brew "leptonica"
+brew "tesseract"
+brew "ffmpeg"
+brew "gdk-pixbuf"
+brew "gh"
+brew "ghostscript"
+brew "glow"
+brew "gnupg"
+brew "go"
+brew "libheif"
+brew "python@3.8"
+brew "imagemagick"
+brew "jq"
+brew "node"
+brew "jupyterlab", link: false
+brew "pango"
+brew "librsvg"
+brew "mackup"
+brew "mas"
+brew "mysql", restart_service: true
+brew "nginx", restart_service: true
+brew "php", restart_service: true, link: false
+brew "php@7.3"
+brew "php@7.4", restart_service: true, link: true
+brew "phpmyadmin"
+brew "ssh-copy-id"
+brew "vault"
+brew "wget"
+brew "yarn"
+brew "youtube-dl"
+brew "aws/tap/aws-sam-cli"
+brew "bbc/audiowaveform/audiowaveform"
+brew "heroku/brew/heroku"
+brew "mongodb/brew/mongodb-community"
+cask "anaconda"
+cask "basictex"
+cask "hiddenbar"
+cask "inkscape"
+cask "netron"
+cask "pdftotext"
+cask "rectangle", args: { appdir: "/Applications" }
+cask "xquartz"
+mas "iA Writer", id: 775737590
+mas "Keynote", id: 409183694
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft PowerPoint", id: 462062816
+mas "NordVPN IKE", id: 1116599239
+mas "Numbers", id: 409203825
+mas "OneDrive", id: 823766827
+mas "Pages", id: 409201541
+mas "Xcode", id: 497799835
