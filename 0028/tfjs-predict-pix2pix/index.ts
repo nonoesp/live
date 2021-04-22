@@ -8,6 +8,10 @@ let model: tf.LayersModel;
 
     console.log(`Loading TensorFlow.js model..`);
 
+    // You need to load the model from an HTTP or HTTPS
+    // server. If your model is local, you could serve
+    // its directory using the http-server npm package
+    // e.g., npm i http-server && http-server /path/to/model
     model = await tf.loadLayersModel(
         'http://127.0.0.1:8080/model/model.json'
     )
