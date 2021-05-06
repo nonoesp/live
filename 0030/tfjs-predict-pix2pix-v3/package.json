@@ -1,0 +1,16 @@
+{
+  "name": "tfjs-predict-pix2pix-v3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs-node": "^3.6.1",
+    "jpeg-js": "^0.4.3"
+  }
+}
