@@ -8,6 +8,8 @@
 
 - Create a Python environment and install the `tensorflowjs_converter`
 
+🎥 [How to create Python conda environments](https://www.youtube.com/watch?v=saEm8FJ62kI)
+
 ```bash
 conda create -n live-30 python=3.8 ipykernel
 conda activate live-30
@@ -21,7 +23,3 @@ tensorflowjs_converter --input_format keras \
                        path/to/my_model.h5 \
                        path/to/tfjs_target_dir
 ```
-
-- References
-
-  - 🎥 [How to create Python conda environments](https://www.youtube.com/watch?v=saEm8FJ62kI)
