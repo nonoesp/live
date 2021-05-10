@@ -8,7 +8,7 @@
 
 ## Create a Python environment and install the `tensorflowjs_converter`
 
-🎥 [How to create Python conda environments](https://www.youtube.com/watch?v=saEm8FJ62kI)
+🎥 [How to create custom Python environments with Anaconda](https://www.youtube.com/watch?v=saEm8FJ62kI)
 
 ```bash
 conda create -n live-30 python=3.8 ipykernel
