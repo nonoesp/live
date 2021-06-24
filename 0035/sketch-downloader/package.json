@@ -1,0 +1,19 @@
+{
+  "name": "sketch-downloader",
+  "version": "1.0.0",
+  "description": "Downloads sketches from Sketch.Nono.MA.",
+  "main": "download.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nono Martínez Alonso",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^3.2.0",
+    "rss-parser": "^3.12.0"
+  },
+  "devDependencies": {
+    "@types/async": "^3.2.6",
+    "@types/node": "^15.12.4"
+  }
+}
