@@ -1,8 +1,16 @@
 import * as React from 'react'
 import { Picture } from './components/picture'
 import { app, useAppState } from 'state'
+import { useKeyboardShortcuts } from 'hooks'
+import { useHotkeys } from 'react-hotkeys-hook'
 
 function App(): JSX.Element {
+
+    useKeyboardShortcuts()
+
+    useHotkeys(`command+shift+b`, () => {
+        setText(`This is Nono Martínez Alonso! 👨🏻‍🎨`)
+    })
 
     const { appState } = useAppState()
 
