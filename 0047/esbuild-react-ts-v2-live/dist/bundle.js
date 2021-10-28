@@ -265,9 +265,9 @@
           {
             Object.freeze(emptyObject);
           }
-          function Component(props, context, updater) {
+          function Component(props, context2, updater) {
             this.props = props;
-            this.context = context;
+            this.context = context2;
             this.refs = emptyObject;
             this.updater = updater || ReactNoopUpdateQueue;
           }
@@ -305,9 +305,9 @@
           function ComponentDummy() {
           }
           ComponentDummy.prototype = Component.prototype;
-          function PureComponent(props, context, updater) {
+          function PureComponent(props, context2, updater) {
             this.props = props;
-            this.context = context;
+            this.context = context2;
             this.refs = emptyObject;
             this.updater = updater || ReactNoopUpdateQueue;
           }
@@ -363,8 +363,8 @@
             if (typeof type === "object") {
               switch (type.$$typeof) {
                 case REACT_CONTEXT_TYPE:
-                  var context = type;
-                  return getContextName(context) + ".Consumer";
+                  var context2 = type;
+                  return getContextName(context2) + ".Consumer";
                 case REACT_PROVIDER_TYPE:
                   var provider = type;
                   return getContextName(provider._context) + ".Provider";
@@ -720,14 +720,14 @@
             }
             return subtreeCount;
           }
-          function mapChildren(children, func, context) {
+          function mapChildren(children, func, context2) {
             if (children == null) {
               return children;
             }
             var result = [];
             var count = 0;
             mapIntoArray(children, result, "", "", function(child) {
-              return func.call(context, child, count++);
+              return func.call(context2, child, count++);
             });
             return result;
           }
@@ -756,7 +756,7 @@
             }
             return children;
           }
-          function createContext(defaultValue, calculateChangedBits) {
+          function createContext2(defaultValue, calculateChangedBits) {
             if (calculateChangedBits === void 0) {
               calculateChangedBits = null;
             } else {
@@ -766,7 +766,7 @@
                 }
               }
             }
-            var context = {
+            var context2 = {
               $$typeof: REACT_CONTEXT_TYPE,
               _calculateChangedBits: calculateChangedBits,
               _currentValue: defaultValue,
@@ -775,9 +775,9 @@
               Provider: null,
               Consumer: null
             };
-            context.Provider = {
+            context2.Provider = {
               $$typeof: REACT_PROVIDER_TYPE,
-              _context: context
+              _context: context2
             };
             var hasWarnedAboutUsingNestedContextConsumers = false;
             var hasWarnedAboutUsingConsumerProvider = false;
@@ -785,8 +785,8 @@
             {
               var Consumer = {
                 $$typeof: REACT_CONTEXT_TYPE,
-                _context: context,
-                _calculateChangedBits: context._calculateChangedBits
+                _context: context2,
+                _calculateChangedBits: context2._calculateChangedBits
               };
               Object.defineProperties(Consumer, {
                 Provider: {
@@ -795,34 +795,34 @@
                       hasWarnedAboutUsingConsumerProvider = true;
                       error("Rendering <Context.Consumer.Provider> is not supported and will be removed in a future major release. Did you mean to render <Context.Provider> instead?");
                     }
-                    return context.Provider;
+                    return context2.Provider;
                   },
                   set: function(_Provider) {
-                    context.Provider = _Provider;
+                    context2.Provider = _Provider;
                   }
                 },
                 _currentValue: {
                   get: function() {
-                    return context._currentValue;
+                    return context2._currentValue;
                   },
                   set: function(_currentValue) {
-                    context._currentValue = _currentValue;
+                    context2._currentValue = _currentValue;
                   }
                 },
                 _currentValue2: {
                   get: function() {
-                    return context._currentValue2;
+                    return context2._currentValue2;
                   },
                   set: function(_currentValue2) {
-                    context._currentValue2 = _currentValue2;
+                    context2._currentValue2 = _currentValue2;
                   }
                 },
                 _threadCount: {
                   get: function() {
-                    return context._threadCount;
+                    return context2._threadCount;
                   },
                   set: function(_threadCount) {
-                    context._threadCount = _threadCount;
+                    context2._threadCount = _threadCount;
                   }
                 },
                 Consumer: {
@@ -831,12 +831,12 @@
                       hasWarnedAboutUsingNestedContextConsumers = true;
                       error("Rendering <Context.Consumer.Consumer> is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?");
                     }
-                    return context.Consumer;
+                    return context2.Consumer;
                   }
                 },
                 displayName: {
                   get: function() {
-                    return context.displayName;
+                    return context2.displayName;
                   },
                   set: function(displayName) {
                     if (!hasWarnedAboutDisplayNameOnConsumer) {
@@ -846,13 +846,13 @@
                   }
                 }
               });
-              context.Consumer = Consumer;
+              context2.Consumer = Consumer;
             }
             {
-              context._currentRenderer = null;
-              context._currentRenderer2 = null;
+              context2._currentRenderer = null;
+              context2._currentRenderer2 = null;
             }
-            return context;
+            return context2;
           }
           var Uninitialized = -1;
           var Pending = 0;
@@ -1044,37 +1044,37 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState(initialState) {
+          function useState(initialState2) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useState(initialState);
+            return dispatcher.useState(initialState2);
           }
-          function useReducer(reducer, initialArg, init) {
+          function useReducer2(reducer, initialArg, init) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef(initialValue) {
+          function useRef2(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect(create, deps) {
+          function useEffect2(create3, deps) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useEffect(create, deps);
+            return dispatcher.useEffect(create3, deps);
           }
-          function useLayoutEffect(create, deps) {
+          function useLayoutEffect2(create3, deps) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useLayoutEffect(create, deps);
+            return dispatcher.useLayoutEffect(create3, deps);
           }
           function useCallback(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
-          function useMemo(create, deps) {
+          function useMemo(create3, deps) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useMemo(create, deps);
+            return dispatcher.useMemo(create3, deps);
           }
-          function useImperativeHandle(ref, create, deps) {
+          function useImperativeHandle(ref, create3, deps) {
             var dispatcher = resolveDispatcher();
-            return dispatcher.useImperativeHandle(ref, create, deps);
+            return dispatcher.useImperativeHandle(ref, create3, deps);
           }
           function useDebugValue(value, formatterFn) {
             {
@@ -1615,7 +1615,7 @@
           exports.PureComponent = PureComponent;
           exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
           exports.cloneElement = cloneElement$1;
-          exports.createContext = createContext;
+          exports.createContext = createContext2;
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
@@ -1626,12 +1626,12 @@
           exports.useCallback = useCallback;
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect;
+          exports.useEffect = useEffect2;
           exports.useImperativeHandle = useImperativeHandle;
-          exports.useLayoutEffect = useLayoutEffect;
+          exports.useLayoutEffect = useLayoutEffect2;
           exports.useMemo = useMemo;
-          exports.useReducer = useReducer;
-          exports.useRef = useRef;
+          exports.useReducer = useReducer2;
+          exports.useRef = useRef2;
           exports.useState = useState;
           exports.version = ReactVersion;
         })();
@@ -2440,11 +2440,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React4 = require_react();
+          var React5 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React4.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2476,7 +2476,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React4) {
+          if (!React5) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3334,8 +3334,8 @@
             if (typeof type === "object") {
               switch (type.$$typeof) {
                 case REACT_CONTEXT_TYPE:
-                  var context = type;
-                  return getContextName(context) + ".Consumer";
+                  var context2 = type;
+                  return getContextName(context2) + ".Consumer";
                 case REACT_PROVIDER_TYPE:
                   var provider = type;
                   return getContextName(provider._context) + ".Provider";
@@ -3470,15 +3470,15 @@
             if (node.hasOwnProperty(valueField) || typeof descriptor === "undefined" || typeof descriptor.get !== "function" || typeof descriptor.set !== "function") {
               return;
             }
-            var get2 = descriptor.get, set2 = descriptor.set;
+            var get3 = descriptor.get, set3 = descriptor.set;
             Object.defineProperty(node, valueField, {
               configurable: true,
               get: function() {
-                return get2.call(this);
+                return get3.call(this);
               },
               set: function(value) {
                 currentValue = "" + value;
-                set2.call(this, value);
+                set3.call(this, value);
               }
             });
             Object.defineProperty(node, valueField, {
@@ -3692,7 +3692,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React4.Children.forEach(children, function(child) {
+            React5.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3703,7 +3703,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React4.Children.forEach(props.children, function(child) {
+                React5.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -5280,10 +5280,10 @@
               passiveBrowserEventsSupported = false;
             }
           }
-          function invokeGuardedCallbackProd(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallbackProd(name, func, context2, a, b, c, d, e, f) {
             var funcArgs = Array.prototype.slice.call(arguments, 3);
             try {
-              func.apply(context, funcArgs);
+              func.apply(context2, funcArgs);
             } catch (error2) {
               this.onError(error2);
             }
@@ -5292,7 +5292,7 @@
           {
             if (typeof window !== "undefined" && typeof window.dispatchEvent === "function" && typeof document !== "undefined" && typeof document.createEvent === "function") {
               var fakeNode = document.createElement("react");
-              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a, b, c, d, e, f) {
+              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context2, a, b, c, d, e, f) {
                 if (!(typeof document !== "undefined")) {
                   {
                     throw Error("The `document` global was defined when React was initialized, but is not defined anymore. This can happen in a test environment if a component schedules an update from an asynchronous callback, but the test has already finished running. To solve this, you can either unmount the component at the end of your test (and ensure that any asynchronous operations get canceled in `componentWillUnmount`), or you can change the test itself to be asynchronous.");
@@ -5313,7 +5313,7 @@
                 function callCallback2() {
                   didCall = true;
                   restoreAfterDispatch();
-                  func.apply(context, funcArgs);
+                  func.apply(context2, funcArgs);
                   didError = false;
                 }
                 var error2;
@@ -5369,12 +5369,12 @@
               caughtError = error2;
             }
           };
-          function invokeGuardedCallback(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallback(name, func, context2, a, b, c, d, e, f) {
             hasError = false;
             caughtError = null;
             invokeGuardedCallbackImpl$1.apply(reporter, arguments);
           }
-          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a, b, c, d, e, f) {
+          function invokeGuardedCallbackAndCatchFirstError(name, func, context2, a, b, c, d, e, f) {
             invokeGuardedCallback.apply(this, arguments);
             if (hasError) {
               var error2 = clearCaughtError();
@@ -5409,13 +5409,13 @@
               }
             }
           }
-          function get(key) {
+          function get2(key) {
             return key._reactInternals;
           }
           function has(key) {
             return key._reactInternals !== void 0;
           }
-          function set(key, value) {
+          function set2(key, value) {
             key._reactInternals = value;
           }
           var NoFlags = 0;
@@ -5494,7 +5494,7 @@
                 instance._warnedAboutRefsInRender = true;
               }
             }
-            var fiber = get(component);
+            var fiber = get2(component);
             if (!fiber) {
               return false;
             }
@@ -6518,14 +6518,14 @@
           function includesSomeLane(a, b) {
             return (a & b) !== NoLanes;
           }
-          function isSubsetOfLanes(set2, subset) {
-            return (set2 & subset) === subset;
+          function isSubsetOfLanes(set3, subset) {
+            return (set3 & subset) === subset;
           }
           function mergeLanes(a, b) {
             return a | b;
           }
-          function removeLanes(set2, subset) {
-            return set2 & ~subset;
+          function removeLanes(set3, subset) {
+            return set3 & ~subset;
           }
           function laneToLanes(lane) {
             return lane;
@@ -9830,18 +9830,18 @@
               if (instance && instance.__reactInternalMemoizedUnmaskedChildContext === unmaskedContext) {
                 return instance.__reactInternalMemoizedMaskedChildContext;
               }
-              var context = {};
+              var context2 = {};
               for (var key in contextTypes) {
-                context[key] = unmaskedContext[key];
+                context2[key] = unmaskedContext[key];
               }
               {
                 var name = getComponentName(type) || "Unknown";
-                checkPropTypes(contextTypes, context, "context", name);
+                checkPropTypes(contextTypes, context2, "context", name);
               }
               if (instance) {
-                cacheContext(workInProgress2, unmaskedContext, context);
+                cacheContext(workInProgress2, unmaskedContext, context2);
               }
-              return context;
+              return context2;
             }
           }
           function hasContextChanged() {
@@ -9867,14 +9867,14 @@
               pop(contextStackCursor, fiber);
             }
           }
-          function pushTopLevelContextObject(fiber, context, didChange) {
+          function pushTopLevelContextObject(fiber, context2, didChange) {
             {
               if (!(contextStackCursor.current === emptyContextObject)) {
                 {
                   throw Error("Unexpected context found on stack. This error is likely caused by a bug in React. Please file an issue.");
                 }
               }
-              push(contextStackCursor, context, fiber);
+              push(contextStackCursor, context2, fiber);
               push(didPerformWorkStackCursor, didChange, fiber);
             }
           }
@@ -10203,9 +10203,9 @@
               }
               return maybeStrictRoot;
             };
-            var setToSortedString = function(set2) {
+            var setToSortedString = function(set3) {
               var array = [];
-              set2.forEach(function(value) {
+              set3.forEach(function(value) {
                 array.push(value);
               });
               return array.sort().join(", ");
@@ -10406,31 +10406,31 @@
             }
           }
           function pushProvider(providerFiber, nextValue) {
-            var context = providerFiber.type._context;
+            var context2 = providerFiber.type._context;
             {
-              push(valueCursor, context._currentValue, providerFiber);
-              context._currentValue = nextValue;
+              push(valueCursor, context2._currentValue, providerFiber);
+              context2._currentValue = nextValue;
               {
-                if (context._currentRenderer !== void 0 && context._currentRenderer !== null && context._currentRenderer !== rendererSigil) {
+                if (context2._currentRenderer !== void 0 && context2._currentRenderer !== null && context2._currentRenderer !== rendererSigil) {
                   error("Detected multiple renderers concurrently rendering the same context provider. This is currently unsupported.");
                 }
-                context._currentRenderer = rendererSigil;
+                context2._currentRenderer = rendererSigil;
               }
             }
           }
           function popProvider(providerFiber) {
             var currentValue = valueCursor.current;
             pop(valueCursor, providerFiber);
-            var context = providerFiber.type._context;
+            var context2 = providerFiber.type._context;
             {
-              context._currentValue = currentValue;
+              context2._currentValue = currentValue;
             }
           }
-          function calculateChangedBits(context, newValue, oldValue) {
+          function calculateChangedBits(context2, newValue, oldValue) {
             if (objectIs(oldValue, newValue)) {
               return 0;
             } else {
-              var changedBits = typeof context._calculateChangedBits === "function" ? context._calculateChangedBits(oldValue, newValue) : MAX_SIGNED_31_BIT_INT;
+              var changedBits = typeof context2._calculateChangedBits === "function" ? context2._calculateChangedBits(oldValue, newValue) : MAX_SIGNED_31_BIT_INT;
               {
                 if ((changedBits & MAX_SIGNED_31_BIT_INT) !== changedBits) {
                   error("calculateChangedBits: Expected the return value to be a 31-bit integer. Instead received: %s", changedBits);
@@ -10456,7 +10456,7 @@
               node = node.return;
             }
           }
-          function propagateContextChange(workInProgress2, context, changedBits, renderLanes2) {
+          function propagateContextChange(workInProgress2, context2, changedBits, renderLanes2) {
             var fiber = workInProgress2.child;
             if (fiber !== null) {
               fiber.return = workInProgress2;
@@ -10468,7 +10468,7 @@
                 nextFiber = fiber.child;
                 var dependency = list.firstContext;
                 while (dependency !== null) {
-                  if (dependency.context === context && (dependency.observedBits & changedBits) !== 0) {
+                  if (dependency.context === context2 && (dependency.observedBits & changedBits) !== 0) {
                     if (fiber.tag === ClassComponent) {
                       var update = createUpdate(NoTimestamp, pickArbitraryLane(renderLanes2));
                       update.tag = ForceUpdate;
@@ -10526,26 +10526,26 @@
               }
             }
           }
-          function readContext(context, observedBits) {
+          function readContext(context2, observedBits) {
             {
               if (isDisallowedContextReadInDEV) {
                 error("Context can only be read while React is rendering. In classes, you can read it in the render method or getDerivedStateFromProps. In function components, you can read it directly in the function body, but not inside Hooks like useReducer() or useMemo().");
               }
             }
-            if (lastContextWithAllBitsObserved === context)
+            if (lastContextWithAllBitsObserved === context2)
               ;
             else if (observedBits === false || observedBits === 0)
               ;
             else {
               var resolvedObservedBits;
               if (typeof observedBits !== "number" || observedBits === MAX_SIGNED_31_BIT_INT) {
-                lastContextWithAllBitsObserved = context;
+                lastContextWithAllBitsObserved = context2;
                 resolvedObservedBits = MAX_SIGNED_31_BIT_INT;
               } else {
                 resolvedObservedBits = observedBits;
               }
               var contextItem = {
-                context,
+                context: context2,
                 observedBits: resolvedObservedBits,
                 next: null
               };
@@ -10565,7 +10565,7 @@
                 lastContextDependency = lastContextDependency.next = contextItem;
               }
             }
-            return context._currentValue;
+            return context2._currentValue;
           }
           var UpdateState = 0;
           var ReplaceState = 1;
@@ -10866,13 +10866,13 @@
               currentlyProcessingQueue = null;
             }
           }
-          function callCallback(callback, context) {
+          function callCallback(callback, context2) {
             if (!(typeof callback === "function")) {
               {
                 throw Error("Invalid argument passed as callback. Expected a function. Instead received: " + callback);
               }
             }
-            callback.call(context);
+            callback.call(context2);
           }
           function resetHasForceUpdateBeforeProcessing() {
             hasForceUpdate = false;
@@ -10896,7 +10896,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React4.Component().refs;
+          var emptyRefsObject = new React5.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -10974,7 +10974,7 @@
           var classComponentUpdater = {
             isMounted,
             enqueueSetState: function(inst, payload, callback) {
-              var fiber = get(inst);
+              var fiber = get2(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -10989,7 +10989,7 @@
               scheduleUpdateOnFiber(fiber, lane, eventTime);
             },
             enqueueReplaceState: function(inst, payload, callback) {
-              var fiber = get(inst);
+              var fiber = get2(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -11005,7 +11005,7 @@
               scheduleUpdateOnFiber(fiber, lane, eventTime);
             },
             enqueueForceUpdate: function(inst, callback) {
-              var fiber = get(inst);
+              var fiber = get2(inst);
               var eventTime = requestEventTime();
               var lane = requestUpdateLane(fiber);
               var update = createUpdate(eventTime, lane);
@@ -11129,7 +11129,7 @@
           function adoptClassInstance(workInProgress2, instance) {
             instance.updater = classComponentUpdater;
             workInProgress2.stateNode = instance;
-            set(instance, workInProgress2);
+            set2(instance, workInProgress2);
             {
               instance._reactInternalInstance = fakeInternalInstance;
             }
@@ -11137,7 +11137,7 @@
           function constructClassInstance(workInProgress2, ctor, props) {
             var isLegacyContextConsumer = false;
             var unmaskedContext = emptyContextObject;
-            var context = emptyContextObject;
+            var context2 = emptyContextObject;
             var contextType = ctor.contextType;
             {
               if ("contextType" in ctor) {
@@ -11161,24 +11161,24 @@
               }
             }
             if (typeof contextType === "object" && contextType !== null) {
-              context = readContext(contextType);
+              context2 = readContext(contextType);
             } else {
               unmaskedContext = getUnmaskedContext(workInProgress2, ctor, true);
               var contextTypes = ctor.contextTypes;
               isLegacyContextConsumer = contextTypes !== null && contextTypes !== void 0;
-              context = isLegacyContextConsumer ? getMaskedContext(workInProgress2, unmaskedContext) : emptyContextObject;
+              context2 = isLegacyContextConsumer ? getMaskedContext(workInProgress2, unmaskedContext) : emptyContextObject;
             }
             {
               if (workInProgress2.mode & StrictMode) {
                 disableLogs();
                 try {
-                  new ctor(props, context);
+                  new ctor(props, context2);
                 } finally {
                   reenableLogs();
                 }
               }
             }
-            var instance = new ctor(props, context);
+            var instance = new ctor(props, context2);
             var state = workInProgress2.memoizedState = instance.state !== null && instance.state !== void 0 ? instance.state : null;
             adoptClassInstance(workInProgress2, instance);
             {
@@ -11219,7 +11219,7 @@
               }
             }
             if (isLegacyContextConsumer) {
-              cacheContext(workInProgress2, unmaskedContext, context);
+              cacheContext(workInProgress2, unmaskedContext, context2);
             }
             return instance;
           }
@@ -12226,14 +12226,14 @@
             pop(rootInstanceStackCursor, fiber);
           }
           function getHostContext() {
-            var context = requiredContext(contextStackCursor$1.current);
-            return context;
+            var context2 = requiredContext(contextStackCursor$1.current);
+            return context2;
           }
           function pushHostContext(fiber) {
             var rootInstance = requiredContext(rootInstanceStackCursor.current);
-            var context = requiredContext(contextStackCursor$1.current);
-            var nextContext = getChildHostContext(context, fiber.type);
-            if (context === nextContext) {
+            var context2 = requiredContext(contextStackCursor$1.current);
+            var nextContext = getChildHostContext(context2, fiber.type);
+            if (context2 === nextContext) {
               return;
             }
             push(contextFiberStackCursor, fiber, fiber);
@@ -12848,18 +12848,18 @@
           }
           function mountReducer(reducer, initialArg, init) {
             var hook = mountWorkInProgressHook();
-            var initialState;
+            var initialState2;
             if (init !== void 0) {
-              initialState = init(initialArg);
+              initialState2 = init(initialArg);
             } else {
-              initialState = initialArg;
+              initialState2 = initialArg;
             }
-            hook.memoizedState = hook.baseState = initialState;
+            hook.memoizedState = hook.baseState = initialState2;
             var queue = hook.queue = {
               pending: null,
               dispatch: null,
               lastRenderedReducer: reducer,
-              lastRenderedState: initialState
+              lastRenderedState: initialState2
             };
             var dispatch = queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue);
             return [hook.memoizedState, dispatch];
@@ -13115,31 +13115,31 @@
             var hook = updateWorkInProgressHook();
             return useMutableSource(hook, source, getSnapshot, subscribe);
           }
-          function mountState(initialState) {
+          function mountState(initialState2) {
             var hook = mountWorkInProgressHook();
-            if (typeof initialState === "function") {
-              initialState = initialState();
+            if (typeof initialState2 === "function") {
+              initialState2 = initialState2();
             }
-            hook.memoizedState = hook.baseState = initialState;
+            hook.memoizedState = hook.baseState = initialState2;
             var queue = hook.queue = {
               pending: null,
               dispatch: null,
               lastRenderedReducer: basicStateReducer,
-              lastRenderedState: initialState
+              lastRenderedState: initialState2
             };
             var dispatch = queue.dispatch = dispatchAction.bind(null, currentlyRenderingFiber$1, queue);
             return [hook.memoizedState, dispatch];
           }
-          function updateState(initialState) {
+          function updateState(initialState2) {
             return updateReducer(basicStateReducer);
           }
-          function rerenderState(initialState) {
+          function rerenderState(initialState2) {
             return rerenderReducer(basicStateReducer);
           }
-          function pushEffect(tag, create, destroy, deps) {
+          function pushEffect(tag, create3, destroy, deps) {
             var effect = {
               tag,
-              create,
+              create: create3,
               destroy,
               deps,
               next: null
@@ -13177,13 +13177,13 @@
             var hook = updateWorkInProgressHook();
             return hook.memoizedState;
           }
-          function mountEffectImpl(fiberFlags, hookFlags, create, deps) {
+          function mountEffectImpl(fiberFlags, hookFlags, create3, deps) {
             var hook = mountWorkInProgressHook();
             var nextDeps = deps === void 0 ? null : deps;
             currentlyRenderingFiber$1.flags |= fiberFlags;
-            hook.memoizedState = pushEffect(HasEffect | hookFlags, create, void 0, nextDeps);
+            hook.memoizedState = pushEffect(HasEffect | hookFlags, create3, void 0, nextDeps);
           }
-          function updateEffectImpl(fiberFlags, hookFlags, create, deps) {
+          function updateEffectImpl(fiberFlags, hookFlags, create3, deps) {
             var hook = updateWorkInProgressHook();
             var nextDeps = deps === void 0 ? null : deps;
             var destroy = void 0;
@@ -13193,40 +13193,40 @@
               if (nextDeps !== null) {
                 var prevDeps = prevEffect.deps;
                 if (areHookInputsEqual(nextDeps, prevDeps)) {
-                  pushEffect(hookFlags, create, destroy, nextDeps);
+                  pushEffect(hookFlags, create3, destroy, nextDeps);
                   return;
                 }
               }
             }
             currentlyRenderingFiber$1.flags |= fiberFlags;
-            hook.memoizedState = pushEffect(HasEffect | hookFlags, create, destroy, nextDeps);
+            hook.memoizedState = pushEffect(HasEffect | hookFlags, create3, destroy, nextDeps);
           }
-          function mountEffect(create, deps) {
+          function mountEffect(create3, deps) {
             {
               if (typeof jest !== "undefined") {
                 warnIfNotCurrentlyActingEffectsInDEV(currentlyRenderingFiber$1);
               }
             }
-            return mountEffectImpl(Update | Passive, Passive$1, create, deps);
+            return mountEffectImpl(Update | Passive, Passive$1, create3, deps);
           }
-          function updateEffect(create, deps) {
+          function updateEffect(create3, deps) {
             {
               if (typeof jest !== "undefined") {
                 warnIfNotCurrentlyActingEffectsInDEV(currentlyRenderingFiber$1);
               }
             }
-            return updateEffectImpl(Update | Passive, Passive$1, create, deps);
+            return updateEffectImpl(Update | Passive, Passive$1, create3, deps);
           }
-          function mountLayoutEffect(create, deps) {
-            return mountEffectImpl(Update, Layout, create, deps);
+          function mountLayoutEffect(create3, deps) {
+            return mountEffectImpl(Update, Layout, create3, deps);
           }
-          function updateLayoutEffect(create, deps) {
-            return updateEffectImpl(Update, Layout, create, deps);
+          function updateLayoutEffect(create3, deps) {
+            return updateEffectImpl(Update, Layout, create3, deps);
           }
-          function imperativeHandleEffect(create, ref) {
+          function imperativeHandleEffect(create3, ref) {
             if (typeof ref === "function") {
               var refCallback = ref;
-              var _inst = create();
+              var _inst = create3();
               refCallback(_inst);
               return function() {
                 refCallback(null);
@@ -13238,30 +13238,30 @@
                   error("Expected useImperativeHandle() first argument to either be a ref callback or React.createRef() object. Instead received: %s.", "an object with keys {" + Object.keys(refObject).join(", ") + "}");
                 }
               }
-              var _inst2 = create();
+              var _inst2 = create3();
               refObject.current = _inst2;
               return function() {
                 refObject.current = null;
               };
             }
           }
-          function mountImperativeHandle(ref, create, deps) {
+          function mountImperativeHandle(ref, create3, deps) {
             {
-              if (typeof create !== "function") {
-                error("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create !== null ? typeof create : "null");
+              if (typeof create3 !== "function") {
+                error("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create3 !== null ? typeof create3 : "null");
               }
             }
             var effectDeps = deps !== null && deps !== void 0 ? deps.concat([ref]) : null;
-            return mountEffectImpl(Update, Layout, imperativeHandleEffect.bind(null, create, ref), effectDeps);
+            return mountEffectImpl(Update, Layout, imperativeHandleEffect.bind(null, create3, ref), effectDeps);
           }
-          function updateImperativeHandle(ref, create, deps) {
+          function updateImperativeHandle(ref, create3, deps) {
             {
-              if (typeof create !== "function") {
-                error("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create !== null ? typeof create : "null");
+              if (typeof create3 !== "function") {
+                error("Expected useImperativeHandle() second argument to be a function that creates a handle. Instead received: %s.", create3 !== null ? typeof create3 : "null");
               }
             }
             var effectDeps = deps !== null && deps !== void 0 ? deps.concat([ref]) : null;
-            return updateEffectImpl(Update, Layout, imperativeHandleEffect.bind(null, create, ref), effectDeps);
+            return updateEffectImpl(Update, Layout, imperativeHandleEffect.bind(null, create3, ref), effectDeps);
           }
           function mountDebugValue(value, formatterFn) {
           }
@@ -13537,8 +13537,8 @@
               error("Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function. For more information, see https://reactjs.org/link/rules-of-hooks");
             };
             HooksDispatcherOnMountInDEV = {
-              readContext: function(context, observedBits) {
-                return readContext(context, observedBits);
+              readContext: function(context2, observedBits) {
+                return readContext(context2, observedBits);
               },
               useCallback: function(callback, deps) {
                 currentHookNameInDev = "useCallback";
@@ -13546,37 +13546,37 @@
                 checkDepsAreArrayDev(deps);
                 return mountCallback(callback, deps);
               },
-              useContext: function(context, observedBits) {
+              useContext: function(context2, observedBits) {
                 currentHookNameInDev = "useContext";
                 mountHookTypesDev();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
-              useEffect: function(create, deps) {
+              useEffect: function(create3, deps) {
                 currentHookNameInDev = "useEffect";
                 mountHookTypesDev();
                 checkDepsAreArrayDev(deps);
-                return mountEffect(create, deps);
+                return mountEffect(create3, deps);
               },
-              useImperativeHandle: function(ref, create, deps) {
+              useImperativeHandle: function(ref, create3, deps) {
                 currentHookNameInDev = "useImperativeHandle";
                 mountHookTypesDev();
                 checkDepsAreArrayDev(deps);
-                return mountImperativeHandle(ref, create, deps);
+                return mountImperativeHandle(ref, create3, deps);
               },
-              useLayoutEffect: function(create, deps) {
+              useLayoutEffect: function(create3, deps) {
                 currentHookNameInDev = "useLayoutEffect";
                 mountHookTypesDev();
                 checkDepsAreArrayDev(deps);
-                return mountLayoutEffect(create, deps);
+                return mountLayoutEffect(create3, deps);
               },
-              useMemo: function(create, deps) {
+              useMemo: function(create3, deps) {
                 currentHookNameInDev = "useMemo";
                 mountHookTypesDev();
                 checkDepsAreArrayDev(deps);
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountMemo(create, deps);
+                  return mountMemo(create3, deps);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13597,13 +13597,13 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState) {
+              useState: function(initialState2) {
                 currentHookNameInDev = "useState";
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState);
+                  return mountState(initialState2);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13636,41 +13636,41 @@
               unstable_isNewReconciler: enableNewReconciler
             };
             HooksDispatcherOnMountWithHookTypesInDEV = {
-              readContext: function(context, observedBits) {
-                return readContext(context, observedBits);
+              readContext: function(context2, observedBits) {
+                return readContext(context2, observedBits);
               },
               useCallback: function(callback, deps) {
                 currentHookNameInDev = "useCallback";
                 updateHookTypesDev();
                 return mountCallback(callback, deps);
               },
-              useContext: function(context, observedBits) {
+              useContext: function(context2, observedBits) {
                 currentHookNameInDev = "useContext";
                 updateHookTypesDev();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
-              useEffect: function(create, deps) {
+              useEffect: function(create3, deps) {
                 currentHookNameInDev = "useEffect";
                 updateHookTypesDev();
-                return mountEffect(create, deps);
+                return mountEffect(create3, deps);
               },
-              useImperativeHandle: function(ref, create, deps) {
+              useImperativeHandle: function(ref, create3, deps) {
                 currentHookNameInDev = "useImperativeHandle";
                 updateHookTypesDev();
-                return mountImperativeHandle(ref, create, deps);
+                return mountImperativeHandle(ref, create3, deps);
               },
-              useLayoutEffect: function(create, deps) {
+              useLayoutEffect: function(create3, deps) {
                 currentHookNameInDev = "useLayoutEffect";
                 updateHookTypesDev();
-                return mountLayoutEffect(create, deps);
+                return mountLayoutEffect(create3, deps);
               },
-              useMemo: function(create, deps) {
+              useMemo: function(create3, deps) {
                 currentHookNameInDev = "useMemo";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountMemo(create, deps);
+                  return mountMemo(create3, deps);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13691,13 +13691,13 @@
                 updateHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState) {
+              useState: function(initialState2) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState);
+                  return mountState(initialState2);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13730,41 +13730,41 @@
               unstable_isNewReconciler: enableNewReconciler
             };
             HooksDispatcherOnUpdateInDEV = {
-              readContext: function(context, observedBits) {
-                return readContext(context, observedBits);
+              readContext: function(context2, observedBits) {
+                return readContext(context2, observedBits);
               },
               useCallback: function(callback, deps) {
                 currentHookNameInDev = "useCallback";
                 updateHookTypesDev();
                 return updateCallback(callback, deps);
               },
-              useContext: function(context, observedBits) {
+              useContext: function(context2, observedBits) {
                 currentHookNameInDev = "useContext";
                 updateHookTypesDev();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
-              useEffect: function(create, deps) {
+              useEffect: function(create3, deps) {
                 currentHookNameInDev = "useEffect";
                 updateHookTypesDev();
-                return updateEffect(create, deps);
+                return updateEffect(create3, deps);
               },
-              useImperativeHandle: function(ref, create, deps) {
+              useImperativeHandle: function(ref, create3, deps) {
                 currentHookNameInDev = "useImperativeHandle";
                 updateHookTypesDev();
-                return updateImperativeHandle(ref, create, deps);
+                return updateImperativeHandle(ref, create3, deps);
               },
-              useLayoutEffect: function(create, deps) {
+              useLayoutEffect: function(create3, deps) {
                 currentHookNameInDev = "useLayoutEffect";
                 updateHookTypesDev();
-                return updateLayoutEffect(create, deps);
+                return updateLayoutEffect(create3, deps);
               },
-              useMemo: function(create, deps) {
+              useMemo: function(create3, deps) {
                 currentHookNameInDev = "useMemo";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateMemo(create, deps);
+                  return updateMemo(create3, deps);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13785,13 +13785,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState) {
+              useState: function(initialState2) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState);
+                  return updateState(initialState2);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13824,41 +13824,41 @@
               unstable_isNewReconciler: enableNewReconciler
             };
             HooksDispatcherOnRerenderInDEV = {
-              readContext: function(context, observedBits) {
-                return readContext(context, observedBits);
+              readContext: function(context2, observedBits) {
+                return readContext(context2, observedBits);
               },
               useCallback: function(callback, deps) {
                 currentHookNameInDev = "useCallback";
                 updateHookTypesDev();
                 return updateCallback(callback, deps);
               },
-              useContext: function(context, observedBits) {
+              useContext: function(context2, observedBits) {
                 currentHookNameInDev = "useContext";
                 updateHookTypesDev();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
-              useEffect: function(create, deps) {
+              useEffect: function(create3, deps) {
                 currentHookNameInDev = "useEffect";
                 updateHookTypesDev();
-                return updateEffect(create, deps);
+                return updateEffect(create3, deps);
               },
-              useImperativeHandle: function(ref, create, deps) {
+              useImperativeHandle: function(ref, create3, deps) {
                 currentHookNameInDev = "useImperativeHandle";
                 updateHookTypesDev();
-                return updateImperativeHandle(ref, create, deps);
+                return updateImperativeHandle(ref, create3, deps);
               },
-              useLayoutEffect: function(create, deps) {
+              useLayoutEffect: function(create3, deps) {
                 currentHookNameInDev = "useLayoutEffect";
                 updateHookTypesDev();
-                return updateLayoutEffect(create, deps);
+                return updateLayoutEffect(create3, deps);
               },
-              useMemo: function(create, deps) {
+              useMemo: function(create3, deps) {
                 currentHookNameInDev = "useMemo";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
                 try {
-                  return updateMemo(create, deps);
+                  return updateMemo(create3, deps);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13879,13 +13879,13 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState) {
+              useState: function(initialState2) {
                 currentHookNameInDev = "useState";
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnRerenderInDEV;
                 try {
-                  return rerenderState(initialState);
+                  return rerenderState(initialState2);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13918,9 +13918,9 @@
               unstable_isNewReconciler: enableNewReconciler
             };
             InvalidNestedHooksDispatcherOnMountInDEV = {
-              readContext: function(context, observedBits) {
+              readContext: function(context2, observedBits) {
                 warnInvalidContextAccess();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
               useCallback: function(callback, deps) {
                 currentHookNameInDev = "useCallback";
@@ -13928,38 +13928,38 @@
                 mountHookTypesDev();
                 return mountCallback(callback, deps);
               },
-              useContext: function(context, observedBits) {
+              useContext: function(context2, observedBits) {
                 currentHookNameInDev = "useContext";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
-              useEffect: function(create, deps) {
+              useEffect: function(create3, deps) {
                 currentHookNameInDev = "useEffect";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
-                return mountEffect(create, deps);
+                return mountEffect(create3, deps);
               },
-              useImperativeHandle: function(ref, create, deps) {
+              useImperativeHandle: function(ref, create3, deps) {
                 currentHookNameInDev = "useImperativeHandle";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
-                return mountImperativeHandle(ref, create, deps);
+                return mountImperativeHandle(ref, create3, deps);
               },
-              useLayoutEffect: function(create, deps) {
+              useLayoutEffect: function(create3, deps) {
                 currentHookNameInDev = "useLayoutEffect";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
-                return mountLayoutEffect(create, deps);
+                return mountLayoutEffect(create3, deps);
               },
-              useMemo: function(create, deps) {
+              useMemo: function(create3, deps) {
                 currentHookNameInDev = "useMemo";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountMemo(create, deps);
+                  return mountMemo(create3, deps);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -13982,14 +13982,14 @@
                 mountHookTypesDev();
                 return mountRef(initialValue);
               },
-              useState: function(initialState) {
+              useState: function(initialState2) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 mountHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnMountInDEV;
                 try {
-                  return mountState(initialState);
+                  return mountState(initialState2);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14027,9 +14027,9 @@
               unstable_isNewReconciler: enableNewReconciler
             };
             InvalidNestedHooksDispatcherOnUpdateInDEV = {
-              readContext: function(context, observedBits) {
+              readContext: function(context2, observedBits) {
                 warnInvalidContextAccess();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
               useCallback: function(callback, deps) {
                 currentHookNameInDev = "useCallback";
@@ -14037,38 +14037,38 @@
                 updateHookTypesDev();
                 return updateCallback(callback, deps);
               },
-              useContext: function(context, observedBits) {
+              useContext: function(context2, observedBits) {
                 currentHookNameInDev = "useContext";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
-              useEffect: function(create, deps) {
+              useEffect: function(create3, deps) {
                 currentHookNameInDev = "useEffect";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return updateEffect(create, deps);
+                return updateEffect(create3, deps);
               },
-              useImperativeHandle: function(ref, create, deps) {
+              useImperativeHandle: function(ref, create3, deps) {
                 currentHookNameInDev = "useImperativeHandle";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return updateImperativeHandle(ref, create, deps);
+                return updateImperativeHandle(ref, create3, deps);
               },
-              useLayoutEffect: function(create, deps) {
+              useLayoutEffect: function(create3, deps) {
                 currentHookNameInDev = "useLayoutEffect";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return updateLayoutEffect(create, deps);
+                return updateLayoutEffect(create3, deps);
               },
-              useMemo: function(create, deps) {
+              useMemo: function(create3, deps) {
                 currentHookNameInDev = "useMemo";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateMemo(create, deps);
+                  return updateMemo(create3, deps);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14091,14 +14091,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState) {
+              useState: function(initialState2) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateState(initialState);
+                  return updateState(initialState2);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14136,9 +14136,9 @@
               unstable_isNewReconciler: enableNewReconciler
             };
             InvalidNestedHooksDispatcherOnRerenderInDEV = {
-              readContext: function(context, observedBits) {
+              readContext: function(context2, observedBits) {
                 warnInvalidContextAccess();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
               useCallback: function(callback, deps) {
                 currentHookNameInDev = "useCallback";
@@ -14146,38 +14146,38 @@
                 updateHookTypesDev();
                 return updateCallback(callback, deps);
               },
-              useContext: function(context, observedBits) {
+              useContext: function(context2, observedBits) {
                 currentHookNameInDev = "useContext";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return readContext(context, observedBits);
+                return readContext(context2, observedBits);
               },
-              useEffect: function(create, deps) {
+              useEffect: function(create3, deps) {
                 currentHookNameInDev = "useEffect";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return updateEffect(create, deps);
+                return updateEffect(create3, deps);
               },
-              useImperativeHandle: function(ref, create, deps) {
+              useImperativeHandle: function(ref, create3, deps) {
                 currentHookNameInDev = "useImperativeHandle";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return updateImperativeHandle(ref, create, deps);
+                return updateImperativeHandle(ref, create3, deps);
               },
-              useLayoutEffect: function(create, deps) {
+              useLayoutEffect: function(create3, deps) {
                 currentHookNameInDev = "useLayoutEffect";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
-                return updateLayoutEffect(create, deps);
+                return updateLayoutEffect(create3, deps);
               },
-              useMemo: function(create, deps) {
+              useMemo: function(create3, deps) {
                 currentHookNameInDev = "useMemo";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return updateMemo(create, deps);
+                  return updateMemo(create3, deps);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14200,14 +14200,14 @@
                 updateHookTypesDev();
                 return updateRef();
               },
-              useState: function(initialState) {
+              useState: function(initialState2) {
                 currentHookNameInDev = "useState";
                 warnInvalidHookAccess();
                 updateHookTypesDev();
                 var prevDispatcher = ReactCurrentDispatcher$1.current;
                 ReactCurrentDispatcher$1.current = InvalidNestedHooksDispatcherOnUpdateInDEV;
                 try {
-                  return rerenderState(initialState);
+                  return rerenderState(initialState2);
                 } finally {
                   ReactCurrentDispatcher$1.current = prevDispatcher;
                 }
@@ -14518,21 +14518,21 @@
                 }
               }
             }
-            var context;
+            var context2;
             {
               var unmaskedContext = getUnmaskedContext(workInProgress2, Component, true);
-              context = getMaskedContext(workInProgress2, unmaskedContext);
+              context2 = getMaskedContext(workInProgress2, unmaskedContext);
             }
             var nextChildren;
             prepareToReadContext(workInProgress2, renderLanes2);
             {
               ReactCurrentOwner$1.current = workInProgress2;
               setIsRendering(true);
-              nextChildren = renderWithHooks(current2, workInProgress2, Component, nextProps, context, renderLanes2);
+              nextChildren = renderWithHooks(current2, workInProgress2, Component, nextProps, context2, renderLanes2);
               if (workInProgress2.mode & StrictMode) {
                 disableLogs();
                 try {
-                  nextChildren = renderWithHooks(current2, workInProgress2, Component, nextProps, context, renderLanes2);
+                  nextChildren = renderWithHooks(current2, workInProgress2, Component, nextProps, context2, renderLanes2);
                 } finally {
                   reenableLogs();
                 }
@@ -14803,10 +14803,10 @@
               workInProgress2.flags |= Placement;
             }
             var props = workInProgress2.pendingProps;
-            var context;
+            var context2;
             {
               var unmaskedContext = getUnmaskedContext(workInProgress2, Component, false);
-              context = getMaskedContext(workInProgress2, unmaskedContext);
+              context2 = getMaskedContext(workInProgress2, unmaskedContext);
             }
             prepareToReadContext(workInProgress2, renderLanes2);
             var value;
@@ -14823,7 +14823,7 @@
               }
               setIsRendering(true);
               ReactCurrentOwner$1.current = workInProgress2;
-              value = renderWithHooks(null, workInProgress2, Component, props, context, renderLanes2);
+              value = renderWithHooks(null, workInProgress2, Component, props, context2, renderLanes2);
               setIsRendering(false);
             }
             workInProgress2.flags |= PerformedWork;
@@ -14869,7 +14869,7 @@
                 if (workInProgress2.mode & StrictMode) {
                   disableLogs();
                   try {
-                    value = renderWithHooks(null, workInProgress2, Component, props, context, renderLanes2);
+                    value = renderWithHooks(null, workInProgress2, Component, props, context2, renderLanes2);
                   } finally {
                     reenableLogs();
                   }
@@ -15374,7 +15374,7 @@
           var hasWarnedAboutUsingNoValuePropOnContextProvider = false;
           function updateContextProvider(current2, workInProgress2, renderLanes2) {
             var providerType = workInProgress2.type;
-            var context = providerType._context;
+            var context2 = providerType._context;
             var newProps = workInProgress2.pendingProps;
             var oldProps = workInProgress2.memoizedProps;
             var newValue = newProps.value;
@@ -15393,13 +15393,13 @@
             pushProvider(workInProgress2, newValue);
             if (oldProps !== null) {
               var oldValue = oldProps.value;
-              var changedBits = calculateChangedBits(context, newValue, oldValue);
+              var changedBits = calculateChangedBits(context2, newValue, oldValue);
               if (changedBits === 0) {
                 if (oldProps.children === newProps.children && !hasContextChanged()) {
                   return bailoutOnAlreadyFinishedWork(current2, workInProgress2, renderLanes2);
                 }
               } else {
-                propagateContextChange(workInProgress2, context, changedBits, renderLanes2);
+                propagateContextChange(workInProgress2, context2, changedBits, renderLanes2);
               }
             }
             var newChildren = newProps.children;
@@ -15408,17 +15408,17 @@
           }
           var hasWarnedAboutUsingContextAsConsumer = false;
           function updateContextConsumer(current2, workInProgress2, renderLanes2) {
-            var context = workInProgress2.type;
+            var context2 = workInProgress2.type;
             {
-              if (context._context === void 0) {
-                if (context !== context.Consumer) {
+              if (context2._context === void 0) {
+                if (context2 !== context2.Consumer) {
                   if (!hasWarnedAboutUsingContextAsConsumer) {
                     hasWarnedAboutUsingContextAsConsumer = true;
                     error("Rendering <Context> directly is not supported and will be removed in a future major release. Did you mean to render <Context.Consumer> instead?");
                   }
                 }
               } else {
-                context = context._context;
+                context2 = context2._context;
               }
             }
             var newProps = workInProgress2.pendingProps;
@@ -15429,7 +15429,7 @@
               }
             }
             prepareToReadContext(workInProgress2, renderLanes2);
-            var newValue = readContext(context, newProps.unstable_observedBits);
+            var newValue = readContext(context2, newProps.unstable_observedBits);
             var newChildren;
             {
               ReactCurrentOwner$1.current = workInProgress2;
@@ -16536,8 +16536,8 @@
               var effect = firstEffect;
               do {
                 if ((effect.tag & tag) === tag) {
-                  var create = effect.create;
-                  effect.destroy = create();
+                  var create3 = effect.create;
+                  effect.destroy = create3();
                   {
                     var destroy = effect.destroy;
                     if (destroy !== void 0 && typeof destroy !== "function") {
@@ -18398,8 +18398,8 @@
             }
           }
           function invokePassiveEffectCreate(effect) {
-            var create = effect.create;
-            effect.destroy = create();
+            var create3 = effect.create;
+            effect.destroy = create3();
           }
           function flushPassiveEffectsImpl() {
             if (rootWithPendingPassiveEffects === null) {
@@ -19715,7 +19715,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             if (!parentComponent) {
               return emptyContextObject;
             }
-            var fiber = get(parentComponent);
+            var fiber = get2(parentComponent);
             var parentContext = findCurrentUnmaskedContext(fiber);
             if (fiber.tag === ClassComponent) {
               var Component = fiber.type;
@@ -19727,7 +19727,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           }
           function findHostInstanceWithWarning(component, methodName) {
             {
-              var fiber = get(component);
+              var fiber = get2(component);
               if (fiber === void 0) {
                 if (typeof component.render === "function") {
                   {
@@ -19787,11 +19787,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
               }
             }
             var lane = requestUpdateLane(current$1);
-            var context = getContextForSubtree(parentComponent);
+            var context2 = getContextForSubtree(parentComponent);
             if (container.context === null) {
-              container.context = context;
+              container.context = context2;
             } else {
-              container.pendingContext = context;
+              container.pendingContext = context2;
             }
             {
               if (isRendering && current !== null && !didWarnAboutNestedUpdates) {
@@ -20420,17 +20420,17 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // src/index.tsx
-  var import_react = __toModule(require_react());
+  var import_react2 = __toModule(require_react());
   var import_react_dom = __toModule(require_react_dom());
 
   // src/app.tsx
-  var React2 = __toModule(require_react());
+  var React3 = __toModule(require_react());
 
   // src/components/picture/picture.tsx
   var React = __toModule(require_react());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/lh/xbrdwt2n6gbdqhffpns_vddm0000gp/T/tmp-37955-Ml5C3o4Sm0TD/esbuild-react-ts/src/components/picture/picture.module.css.js
-  var digest = "556d9b906476bd2654736698d155e37c1ae284e24930a329b92da29d28566213";
+  // esbuild-css-modules-plugin-namespace:/var/folders/lh/xbrdwt2n6gbdqhffpns_vddm0000gp/T/tmp-12869-wSMFPoJcXNuk/esbuild-react-ts-v2-live/src/components/picture/picture.module.css.js
+  var digest = "00ec044e3b6ea5c94b853d60212baca111ac1b9e2a4f034713668f35aaa8d4d7";
   var css = `
 ._image_1wadw_2 {
     position: relative;
@@ -20468,34 +20468,491 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       className: picture_module_css_default.image,
       style: {
         backgroundImage: `url('${props.image})`
-      }
+      },
+      onClick: props.onClick
     }, /* @__PURE__ */ React.createElement("div", {
       className: picture_module_css_default.title
     }, props.title));
   }
 
+  // src/state/state.ts
+  var React2 = __toModule(require_react());
+
+  // node_modules/rko/dist/esm/index.js
+  var import_react = __toModule(require_react());
+  var __defProp2 = Object.defineProperty;
+  var __defProps = Object.defineProperties;
+  var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
+  var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+  var __hasOwnProp2 = Object.prototype.hasOwnProperty;
+  var __propIsEnum = Object.prototype.propertyIsEnumerable;
+  var __defNormalProp = (obj, key, value) => key in obj ? __defProp2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+  var __spreadValues = (a, b) => {
+    for (var prop in b || (b = {}))
+      if (__hasOwnProp2.call(b, prop))
+        __defNormalProp(a, prop, b[prop]);
+    if (__getOwnPropSymbols)
+      for (var prop of __getOwnPropSymbols(b)) {
+        if (__propIsEnum.call(b, prop))
+          __defNormalProp(a, prop, b[prop]);
+      }
+    return a;
+  };
+  var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+  var __async = (__this, __arguments, generator) => {
+    return new Promise((resolve, reject) => {
+      var fulfilled = (value) => {
+        try {
+          step(generator.next(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var rejected = (value) => {
+        try {
+          step(generator.throw(value));
+        } catch (e) {
+          reject(e);
+        }
+      };
+      var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+      step((generator = generator.apply(__this, __arguments)).next());
+    });
+  };
+  function create(createState) {
+    let state;
+    const listeners = new Set();
+    const setState = (partial, replace) => {
+      const nextState = typeof partial === "function" ? partial(state) : partial;
+      if (nextState !== state) {
+        const previousState = state;
+        state = replace ? nextState : Object.assign({}, state, nextState);
+        listeners.forEach((listener) => listener(state, previousState));
+      }
+    };
+    const getState = () => state;
+    const subscribeWithSelector = (listener, selector = getState, equalityFn = Object.is) => {
+      let currentSlice = selector(state);
+      function listenerToAdd() {
+        const nextSlice = selector(state);
+        if (!equalityFn(currentSlice, nextSlice)) {
+          const previousSlice = currentSlice;
+          listener(currentSlice = nextSlice, previousSlice);
+        }
+      }
+      listeners.add(listenerToAdd);
+      return () => listeners.delete(listenerToAdd);
+    };
+    const subscribe = (listener, selector, equalityFn) => {
+      if (selector || equalityFn) {
+        return subscribeWithSelector(listener, selector, equalityFn);
+      }
+      listeners.add(listener);
+      return () => listeners.delete(listener);
+    };
+    const destroy = () => listeners.clear();
+    const api = { setState, getState, subscribe, destroy };
+    state = createState(setState, getState, api);
+    return api;
+  }
+  function create$1(createState) {
+    let state;
+    const listeners = new Set();
+    const setState = (partial, replace) => {
+      const nextState = typeof partial === "function" ? partial(state) : partial;
+      if (nextState !== state) {
+        const previousState = state;
+        state = replace ? nextState : Object.assign({}, state, nextState);
+        listeners.forEach((listener) => listener(state, previousState));
+      }
+    };
+    const getState = () => state;
+    const subscribeWithSelector = (listener, selector = getState, equalityFn = Object.is) => {
+      let currentSlice = selector(state);
+      function listenerToAdd() {
+        const nextSlice = selector(state);
+        if (!equalityFn(currentSlice, nextSlice)) {
+          const previousSlice = currentSlice;
+          listener(currentSlice = nextSlice, previousSlice);
+        }
+      }
+      listeners.add(listenerToAdd);
+      return () => listeners.delete(listenerToAdd);
+    };
+    const subscribe = (listener, selector, equalityFn) => {
+      if (selector || equalityFn) {
+        return subscribeWithSelector(listener, selector, equalityFn);
+      }
+      listeners.add(listener);
+      return () => listeners.delete(listener);
+    };
+    const destroy = () => listeners.clear();
+    const api = { setState, getState, subscribe, destroy };
+    state = createState(setState, getState, api);
+    return api;
+  }
+  var isSSR = typeof window === "undefined" || !window.navigator || /ServerSideRendering|^Deno\//.test(window.navigator.userAgent);
+  var useIsomorphicLayoutEffect = isSSR ? import_react.useEffect : import_react.useLayoutEffect;
+  function create2(createState) {
+    const api = typeof createState === "function" ? create$1(createState) : createState;
+    const useStore = (selector = api.getState, equalityFn = Object.is) => {
+      const [, forceUpdate] = (0, import_react.useReducer)((c) => c + 1, 0);
+      const state = api.getState();
+      const stateRef = (0, import_react.useRef)(state);
+      const selectorRef = (0, import_react.useRef)(selector);
+      const equalityFnRef = (0, import_react.useRef)(equalityFn);
+      const erroredRef = (0, import_react.useRef)(false);
+      const currentSliceRef = (0, import_react.useRef)();
+      if (currentSliceRef.current === void 0) {
+        currentSliceRef.current = selector(state);
+      }
+      let newStateSlice;
+      let hasNewStateSlice = false;
+      if (stateRef.current !== state || selectorRef.current !== selector || equalityFnRef.current !== equalityFn || erroredRef.current) {
+        newStateSlice = selector(state);
+        hasNewStateSlice = !equalityFn(currentSliceRef.current, newStateSlice);
+      }
+      useIsomorphicLayoutEffect(() => {
+        if (hasNewStateSlice) {
+          currentSliceRef.current = newStateSlice;
+        }
+        stateRef.current = state;
+        selectorRef.current = selector;
+        equalityFnRef.current = equalityFn;
+        erroredRef.current = false;
+      });
+      const stateBeforeSubscriptionRef = (0, import_react.useRef)(state);
+      useIsomorphicLayoutEffect(() => {
+        const listener = () => {
+          try {
+            const nextState = api.getState();
+            const nextStateSlice = selectorRef.current(nextState);
+            if (!equalityFnRef.current(currentSliceRef.current, nextStateSlice)) {
+              stateRef.current = nextState;
+              currentSliceRef.current = nextStateSlice;
+              forceUpdate();
+            }
+          } catch (error) {
+            erroredRef.current = true;
+            forceUpdate();
+          }
+        };
+        const unsubscribe = api.subscribe(listener);
+        if (api.getState() !== stateBeforeSubscriptionRef.current) {
+          listener();
+        }
+        return unsubscribe;
+      }, []);
+      return hasNewStateSlice ? newStateSlice : currentSliceRef.current;
+    };
+    Object.assign(useStore, api);
+    useStore[Symbol.iterator] = function() {
+      console.warn("[useStore, api] = create() is deprecated and will be removed in v4");
+      const items = [useStore, api];
+      return {
+        next() {
+          const done = items.length <= 0;
+          return { value: items.shift(), done };
+        }
+      };
+    };
+    return useStore;
+  }
+  function idbReady() {
+    const isSafari = !navigator.userAgentData && /Safari\//.test(navigator.userAgent) && !/Chrom(e|ium)\//.test(navigator.userAgent);
+    if (!isSafari || !indexedDB.databases)
+      return Promise.resolve();
+    let intervalId;
+    return new Promise((resolve) => {
+      const tryIdb = () => indexedDB.databases().finally(resolve);
+      intervalId = setInterval(tryIdb, 100);
+      tryIdb();
+    }).finally(() => clearInterval(intervalId));
+  }
+  var esm_default = idbReady;
+  function promisifyRequest(request) {
+    return new Promise((resolve, reject) => {
+      request.oncomplete = request.onsuccess = () => resolve(request.result);
+      request.onabort = request.onerror = () => reject(request.error);
+    });
+  }
+  function createStore(dbName, storeName) {
+    const dbp = esm_default().then(() => {
+      const request = indexedDB.open(dbName);
+      request.onupgradeneeded = () => request.result.createObjectStore(storeName);
+      return promisifyRequest(request);
+    });
+    return (txMode, callback) => dbp.then((db) => callback(db.transaction(storeName, txMode).objectStore(storeName)));
+  }
+  var defaultGetStoreFunc;
+  function defaultGetStore() {
+    if (!defaultGetStoreFunc) {
+      defaultGetStoreFunc = createStore("keyval-store", "keyval");
+    }
+    return defaultGetStoreFunc;
+  }
+  function get(key, customStore = defaultGetStore()) {
+    return customStore("readonly", (store) => promisifyRequest(store.get(key)));
+  }
+  function set(key, value, customStore = defaultGetStore()) {
+    return customStore("readwrite", (store) => {
+      store.put(value, key);
+      return promisifyRequest(store.transaction);
+    });
+  }
+  function deepCopy(target) {
+    if (target === null) {
+      return target;
+    }
+    if (target instanceof Date) {
+      return new Date(target.getTime());
+    }
+    if (typeof target === "object") {
+      if (typeof target[Symbol.iterator] === "function") {
+        const cp = [];
+        if (target.length > 0) {
+          for (const arrayMember of target) {
+            cp.push(deepCopy(arrayMember));
+          }
+        }
+        return cp;
+      } else {
+        const targetKeys = Object.keys(target);
+        const cp = {};
+        if (targetKeys.length > 0) {
+          for (const key of targetKeys) {
+            cp[key] = deepCopy(target[key]);
+          }
+        }
+        return cp;
+      }
+    }
+    return target;
+  }
+  function merge(target, patch) {
+    const result = __spreadValues({}, target);
+    const entries = Object.entries(patch);
+    for (const [key, value] of entries)
+      result[key] = value === Object(value) && !Array.isArray(value) ? merge(result[key], value) : value;
+    return result;
+  }
+  var StateManager = class {
+    constructor(initialState2, id, version, update) {
+      this.pointer = -1;
+      this._status = "loading";
+      this.stack = [];
+      this.persist = () => {
+        if (this._idbId) {
+          return set(this._idbId, this._state);
+        }
+      };
+      this.applyPatch = (patch, id2) => {
+        const prev = this._state;
+        const next = merge(this._state, patch);
+        const final = this.cleanup(next, prev, patch, id2);
+        this.onStateWillChange(final, id2);
+        this._state = final;
+        this.store.setState(this._state, true);
+        this.onStateDidChange(this._state, id2);
+        return this;
+      };
+      this.onReady = () => {
+      };
+      this.cleanup = (nextState, prevState, patch, id2) => nextState;
+      this.onStateWillChange = (state, id2) => {
+      };
+      this.onStateDidChange = (state, id2) => {
+      };
+      this.patchState = (patch, id2) => {
+        this.applyPatch(patch, id2 ? "patch:" + id2 : "patch");
+        return this;
+      };
+      this.replaceState = (state, id2) => {
+        const final = this.cleanup(state, this._state, state, id2 ? "replace:" + id2 : "replace");
+        this.onStateWillChange(final, id2 ? "replace:" + id2 : "replace");
+        this._state = final;
+        this.store.setState(this._state, true);
+        this.onStateDidChange(this._state, id2 ? "replace:" + id2 : "replace");
+        return this;
+      };
+      this.setState = (command, id2 = command.id) => {
+        if (this.pointer < this.stack.length - 1) {
+          this.stack = this.stack.slice(0, this.pointer + 1);
+        }
+        this.stack.push(__spreadProps(__spreadValues({}, command), { id: id2 }));
+        this.pointer = this.stack.length - 1;
+        this.applyPatch(command.after, id2 ? "command:" + id2 : "command");
+        this.persist();
+        return this;
+      };
+      this.reset = () => {
+        this.onStateWillChange(this.initialState, "reset");
+        this._state = this.initialState;
+        this.store.setState(this._state, true);
+        this.resetHistory();
+        this.persist();
+        this.onStateDidChange(this._state, "reset");
+        return this;
+      };
+      this.replaceHistory = (history, pointer = history.length - 1) => {
+        this.stack = history;
+        this.pointer = pointer;
+        return this;
+      };
+      this.resetHistory = () => {
+        this.stack = [];
+        this.pointer = -1;
+        return this;
+      };
+      this.undo = () => {
+        if (!this.canUndo)
+          return this;
+        const command = this.stack[this.pointer];
+        this.pointer--;
+        this.applyPatch(command.before, command.id ? `undo:${command.id}` : "undo");
+        this.persist();
+        return this;
+      };
+      this.redo = () => {
+        if (!this.canRedo)
+          return this;
+        this.pointer++;
+        const command = this.stack[this.pointer];
+        this.applyPatch(command.after, command.id ? `redo:${command.id}` : "redo");
+        this.persist();
+        return this;
+      };
+      this.setSnapshot = () => {
+        this._snapshot = __spreadValues({}, this._state);
+        return this;
+      };
+      this.forceUpdate = () => {
+        this.store.setState(this._state, true);
+      };
+      this._idbId = id;
+      this._state = deepCopy(initialState2);
+      this._snapshot = deepCopy(initialState2);
+      this.initialState = deepCopy(initialState2);
+      this.store = create(() => this._state);
+      this.useStore = create2(this.store);
+      if (this._idbId) {
+        get(this._idbId).then((saved) => __async(this, null, function* () {
+          if (saved) {
+            let next = saved;
+            if (version) {
+              let savedVersion = yield get(id + "_version");
+              if (savedVersion && savedVersion < version) {
+                next = update ? update(saved, initialState2, savedVersion) : initialState2;
+              }
+            }
+            yield set(id + "_version", version || -1);
+            this._state = deepCopy(next);
+            this._snapshot = deepCopy(next);
+            this.store.setState(this._state, true);
+          } else {
+            yield set(id + "_version", version || -1);
+          }
+          this._status = "ready";
+          this.onReady();
+        }));
+      } else {
+        new Promise((resolve) => resolve()).then(() => {
+          this._status = "ready";
+          this.onReady();
+        });
+      }
+    }
+    get canUndo() {
+      return this.pointer > -1;
+    }
+    get canRedo() {
+      return this.pointer < this.stack.length - 1;
+    }
+    get state() {
+      return this._state;
+    }
+    get status() {
+      return this._status;
+    }
+    get snapshot() {
+      return this._snapshot;
+    }
+  };
+
+  // src/state/state.ts
+  var initialState = {
+    appState: {
+      text: `We're coding live. \u{1F643}`
+    }
+  };
+  var context = React2.createContext({});
+  var AppState = class extends StateManager {
+    constructor() {
+      super(...arguments);
+      this.setText = (text) => {
+        const { state } = this;
+        return this.setState({
+          before: {
+            appState: {
+              text: state.appState.text
+            }
+          },
+          after: {
+            appState: {
+              text
+            }
+          }
+        });
+      };
+    }
+  };
+  var app = new AppState(initialState, "text-app", 1);
+  function useAppState(selector) {
+    if (selector) {
+      return app.useStore(selector);
+    }
+    return app.useStore();
+  }
+
   // src/app.tsx
   function App() {
-    return /* @__PURE__ */ React2.createElement("div", null, /* @__PURE__ */ React2.createElement("div", {
+    const { appState } = useAppState();
+    const { setText } = app;
+    const buttonStyle = {
+      display: "inline-block",
+      cursor: "pointer",
+      userSelect: "none"
+    };
+    return /* @__PURE__ */ React3.createElement("div", null, /* @__PURE__ */ React3.createElement("div", {
       className: "wrapper"
-    }, /* @__PURE__ */ React2.createElement("h1", null, "Hello, React! \u{1F680}"), /* @__PURE__ */ React2.createElement("p", null, "We're coding live. \u{1F643}"), /* @__PURE__ */ React2.createElement(Picture, {
-      title: `Zoom H6`,
-      image: `https://nono.imgix.net/img/u/sketch-210508-panaderos-zoom-recorder-h6.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`
-    }), /* @__PURE__ */ React2.createElement(Picture, {
-      title: `Sony a6500`,
-      image: `https://nono.imgix.net/img/u/sketch-210923-sony-alpha-6500-evil-mirrorless-camera-tripod-video-8-usb-cable.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`
-    }), /* @__PURE__ */ React2.createElement(Picture, {
-      title: `Out of Context`,
-      image: `https://nono.imgix.net/img/u/sketch-190419_london-british-museum-hoa-hokakanaia.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`
-    }), /* @__PURE__ */ React2.createElement(Picture, {
-      title: `Erythrina Caffra`,
-      image: `https://nono.imgix.net/img/u/sketch-190531_malaga-enrique-garcia-herrera-tree-erythrina-caffra.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`
+    }, /* @__PURE__ */ React3.createElement("h1", null, "Hello, React! \u{1F680}"), /* @__PURE__ */ React3.createElement("p", null, appState.text), /* @__PURE__ */ React3.createElement("div", null, app.canUndo && /* @__PURE__ */ React3.createElement("div", {
+      style: buttonStyle,
+      onClick: () => app.undo()
+    }, "\u2190 Undo"), "\xA0\xA0", app.canRedo && /* @__PURE__ */ React3.createElement("div", {
+      style: buttonStyle,
+      onClick: () => app.redo()
+    }, "Redo \u2192")), /* @__PURE__ */ React3.createElement("br", null), /* @__PURE__ */ React3.createElement(Picture, {
+      title: `Zoom H6 \u{1F3A4}`,
+      image: `https://nono.imgix.net/img/u/sketch-210508-panaderos-zoom-recorder-h6.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`,
+      onClick: () => setText(`Zoom H6 \u{1F3A4}`)
+    }), /* @__PURE__ */ React3.createElement(Picture, {
+      title: `Sony a6500 \u{1F4F7}`,
+      image: `https://nono.imgix.net/img/u/sketch-210923-sony-alpha-6500-evil-mirrorless-camera-tripod-video-8-usb-cable.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`,
+      onClick: () => setText(`Sony a6500 \u{1F4F7}`)
+    }), /* @__PURE__ */ React3.createElement(Picture, {
+      title: `Out of Context \u{1F5FF}`,
+      image: `https://nono.imgix.net/img/u/sketch-190419_london-british-museum-hoa-hokakanaia.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`,
+      onClick: () => setText(`Out of Context \u{1F5FF}`)
+    }), /* @__PURE__ */ React3.createElement(Picture, {
+      title: `Erythrina Caffra \u{1F333}`,
+      image: `https://nono.imgix.net/img/u/sketch-190531_malaga-enrique-garcia-herrera-tree-erythrina-caffra.jpg?ar=16%3A9&fit=clamp&h=1600&ixlib=php-3.3.1&w=800&pad=1900`,
+      onClick: () => setText(`Erythrina Caffra \u{1F333}`)
     })));
   }
   var app_default = App;
 
   // src/index.tsx
-  import_react_dom.default.render(/* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement(app_default, null)), document.getElementById("root"));
+  import_react_dom.default.render(/* @__PURE__ */ import_react2.default.createElement("div", null, /* @__PURE__ */ import_react2.default.createElement(app_default, null)), document.getElementById("root"));
 })();
 /*
 object-assign
