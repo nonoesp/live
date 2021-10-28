@@ -8,6 +8,7 @@ export function Picture(props): JSX.Element {
             style={{
                 backgroundImage: `url('${props.image})`
             }}
+            onClick={props.onClick}
         >
             <div className={styles.title}>
                 {props.title}
