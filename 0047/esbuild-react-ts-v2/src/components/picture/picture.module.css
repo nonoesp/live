@@ -1,0 +1,21 @@
+
+.image {
+    position: relative;
+    display: inline-block;
+    margin: 0 15px 9px 0;
+    width: 150px;
+    height: 200px;
+    border: 1px solid #eaeaea;
+    border-radius: 3px;
+    background-color: #fafafa;
+    background-position: center;  
+    background-size: cover; 
+}
+
+.title {
+    color: #444;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 0.75rem;
+}
