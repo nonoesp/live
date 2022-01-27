@@ -2,9 +2,12 @@ import Parser from 'rss-parser';
 import * as async from 'async';
 import * as https from 'https';
 import * as fs from 'fs';
+import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
 
 const OUTPUT_DIR = '/Users/nono/Desktop/images/';
-const IMAGE_SIZE = 2500;
+const IMAGE_WIDTH = 3840;
+const IMAGE_HEIGHT = 2160;
+const IMAGE_PADDING = 600;
 
 type CustomFeed = {foo: string};
 type CustomItem = {
@@ -29,7 +32,9 @@ const parser: Parser<CustomFeed, CustomItem> = new Parser({
 
     let i = 0;
     feed.items.reverse().forEach(item => {
-            const Url = item['media:square'].$.url.split(`2048`).join(IMAGE_SIZE);
+            const Url = item['media:square'].$.url
+            .split(`h=2048`).join(`h=${IMAGE_HEIGHT}`)
+            .split(`w=2048`).join(`w=${IMAGE_WIDTH}&pad=${IMAGE_PADDING}`);
 
             const slug = item.title?.toLowerCase()
                 .split(' ').join('-')
@@ -42,7 +47,7 @@ const parser: Parser<CustomFeed, CustomItem> = new Parser({
 
             const paddedIndex = `${i+1}`.padStart(3, '0');
             const Filename = `${paddedIndex}-${slug}.jpg`;
-            
+
             // Add images to download queue
             q.push({Url, Filename});
         i++;
