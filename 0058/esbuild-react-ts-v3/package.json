@@ -1,0 +1,29 @@
+{
+  "name": "esbuild-react-ts",
+  "version": "1.0.0",
+  "description": "Starter app with React, TypeScript, esbuild, and more.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./esbuild.config.mjs --dev tsc",
+    "build": "node ./esbuild.config.mjs --prod tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.11.2",
+    "@types/react": "^17.0.31",
+    "@types/react-dom": "^17.0.10",
+    "create-serve": "^1.0.1",
+    "esbuild": "^0.13.8",
+    "esbuild-css-modules-plugin": "^2.0.9",
+    "fs": "^0.0.1-security"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hotkeys-hook": "^3.4.4",
+    "rko": "^0.5.25"
+  }
+}
