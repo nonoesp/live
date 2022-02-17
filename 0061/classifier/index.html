@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>🧠 Classifying with ml5js</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+        <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                font-family: system-ui, sans-serif;
+            }
+            body {
+                background-color: #222;
+                color: #fafafa;
+            }
+            h1 {
+                font-size: 2.2rem;
+                margin:0;
+            }
+            .wrap {
+                position: relative;
+                margin: 2rem auto;
+                max-width: 45rem;
+                text-align: center;
+            }
+            p {
+                font-size: 1.5rem;
+                /* margin: 0 auto; */
+                margin-block-start: 1.5rem;;
+                margin-block-end: 1.5rem;
+                text-align: center;
+            }
+            canvas {
+                display: block;
+                margin: 0 auto;
+                width: 600px;
+                height: 600px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="wrap">
+            <h1>
+                Classifying Images with ml5js & MobileNet.</h1>
+        </div>
+        <div>
+            <p class="status">Classifying...</p>
+        </div>
+        <script src="sketch.js"></script>
+    </body>
+</html>
