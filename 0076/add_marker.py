@@ -2,6 +2,11 @@
 # script.py
 #!/usr/bin/env python
 # coding: utf-8
+
+'''
+Creates YouTube-friendly markers for on-going audio and video recordings.
+'''
+
 import argparse
 import os
 import math
