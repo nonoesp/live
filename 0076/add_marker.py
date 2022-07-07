@@ -12,14 +12,17 @@ import os
 import math
 from glob import glob
 
+
 def elapsed_seconds_since_start(path):
-   return os.path.getmtime(path)-os.stat(path).st_birthtime
+    return os.path.getmtime(path)-os.stat(path).st_birthtime
+
 
 def duration_seconds_to_hours_minutes_seconds(seconds):
     hours = math.floor(seconds / (60*60))
     minutes = math.floor(seconds / 60 % 60)
     seconds = math.ceil(seconds % 60)
     return (hours, minutes, seconds)
+
 
 def seconds_to_timestamp(hours, minutes, seconds):
     hours_string = str(hours).zfill(2)
@@ -29,12 +32,15 @@ def seconds_to_timestamp(hours, minutes, seconds):
         return f'{minutes_string}:{seconds_string}'
     return f'{hours_string}:{minutes_string}:{seconds_string}'
 
+
 def timestamp(path):
     seconds = elapsed_seconds_since_start(path)
-    hours, minutes, seconds = duration_seconds_to_hours_minutes_seconds(seconds)
+    hours, minutes, seconds = duration_seconds_to_hours_minutes_seconds(
+        seconds)
     return seconds_to_timestamp(hours, minutes, seconds)
 
-def add_marker(text, recording_path = None, recording_dir = None):
+
+def add_marker(text, recording_path=None, recording_dir=None):
 
     if recording_path is None:
 
@@ -74,6 +80,7 @@ def add_marker(text, recording_path = None, recording_dir = None):
     recording_name = os.path.basename(recording_path)
     print(f'Created marker for {recording_name}')
     print(marker_text)
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
