@@ -5,8 +5,13 @@
 @endphp
 
 @section('content')
-Welcome to my home page.
 
-Go to my <a href="/people">People</a> page.
+    <p>
+        Welcome to my home page.
+    </p>
+
+    <p>
+        Go to my <a href="/people">People</a> page.
+    </p>
 
 @stop
