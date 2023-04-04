@@ -4,7 +4,7 @@ import * as https from 'https';
 import * as fs from 'fs';
 
 const OUTPUT_DIR = '/Users/nono/Desktop/images/';
-const IMAGE_SIZE = 2500;
+const IMAGE_SIZE = 1024;
 
 type CustomFeed = {foo: string};
 type CustomItem = {
