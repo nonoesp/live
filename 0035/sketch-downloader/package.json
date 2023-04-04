@@ -4,16 +4,19 @@
   "description": "Downloads sketches from Sketch.Nono.MA.",
   "main": "download.ts",
   "scripts": {
+    "download": "ts-node download.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nono Martínez Alonso",
   "license": "MIT",
   "dependencies": {
     "async": "^3.2.0",
+    "commander": "^10.0.0",
     "rss-parser": "^3.12.0"
   },
   "devDependencies": {
     "@types/async": "^3.2.6",
-    "@types/node": "^15.12.4"
+    "@types/node": "^15.12.4",
+    "ts-node": "^10.9.1"
   }
 }
