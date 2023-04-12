@@ -1,10 +1,37 @@
+#!/usr/bin/env node
+import { Command, InvalidArgumentError } from 'commander'
 import Parser from 'rss-parser';
 import * as async from 'async';
 import * as https from 'https';
 import * as fs from 'fs';
+import { homedir } from 'os';
+import { join } from 'path';
 
-const OUTPUT_DIR = '/Users/nono/Desktop/images/';
-const IMAGE_SIZE = 1024;
+const OUTPUT_DIR = join(homedir(), 'Desktop', 'images');
+
+if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR)
+}
+
+function myParseInt(value: string, dummyPrevious: string) {
+    // parseInt takes a string and a radix
+    const parsedValue = parseInt(value, 10);
+    if (isNaN(parsedValue)) {
+      throw new InvalidArgumentError('Not a number.');
+    }
+    return parsedValue;
+}
+
+const program = new Command()
+
+program
+    .option('-s, --size [number]', 'Image size')
+    
+    program.parse(process.argv)
+    
+    const options = program.opts()
+    
+const IMAGE_SIZE = options.size ?? 512;
 
 type CustomFeed = {foo: string};
 type CustomItem = {
