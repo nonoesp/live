@@ -3,6 +3,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# MIT License
+# Nono Martínez Alonso (c) 2023
+# https://youtube.com/NonoMartinezAlonso
+
 import atexit
 import logging
 logging.basicConfig(filename='/Users/nono/Desktop/example.log', encoding='utf-8', level=logging.DEBUG)
@@ -108,46 +112,77 @@ def video_marker_to_audio_clip(input_path, output_path, marker_timestamp, start_
     output.run(overwrite_output=True)
 
 
-def add_marker(text, recording_path=None, recording_dir=None):
+def last_modified_file_from_path(dir_path):
 
-    if recording_path is None:
+    last_modified_file_from_path = None
 
-        file_types = [
-            'mov',
-            'MOV',
-            'mp4',
-            'MP4',
-            'mkv',
-            'MKV',
-            # 'aiff',
-            # 'AIFF',
-            'mp3',
-            'MP3',
-            'wav',
-            'WAV',
-        ]
-        # types = ('*.pdf', '*.cpp') # the tuple of file types
-        recording_paths = []
-        for file_type in file_types:
-            recording_paths.extend(glob(f'{recording_dir}/*.{file_type}'))
+    file_types = [
+        'mov',
+        'MOV',
+        'mp4',
+        'MP4',
+        'mkv',
+        'MKV',
+        # 'aiff',
+        # 'AIFF',
+        'mp3',
+        'MP3',
+        'wav',
+        'WAV',
+    ]
+    # types = ('*.pdf', '*.cpp') # the tuple of file types
 
-        most_recent_modification_date = 0
-        for file_path in recording_paths:
-            modification_date = os.path.getmtime(file_path)
-            if (modification_date > most_recent_modification_date):
-                most_recent_modification_date = modification_date
-                recording_path = file_path
+    recording_paths = []
+    for file_type in file_types:
+        recording_paths.extend(glob(f'{dir_path}/*.{file_type}'))
 
-    log_path = f'{recording_path}.markers.txt'
+    most_recent_modification_date = 0
+    for file_path in recording_paths:
+        modification_date = os.path.getmtime(file_path)
+        if (modification_date > most_recent_modification_date):
+            most_recent_modification_date = modification_date
+            last_modified_file_from_path = file_path
+    
+    return last_modified_file_from_path
 
-    with open(log_path, 'a') as f:
-        stamp = timestamp(recording_path)
+
+def markers_file_from_file_path(file_path):
+    return f'{file_path}.markers.txt'
+
+
+def sort_markers_file_timestamps(file_path):
+
+    # Read markers from file.
+    markers_file = open(file_path, 'r')
+    lines = markers_file.readlines()
+    markers_file.close()
+        
+    # Sort markers by timestamp.
+    lines = list(map(lambda x: (timestamp_to_seconds(x.split(' ')[0]), x), lines))
+    lines = sorted(lines, key=lambda x: x[0])
+    lines = list(map(lambda x: x[1], lines))
+
+    # Write sorted markers to file.
+    markers_text = ''.join(lines)
+    markers_file = open(file_path, 'w')
+    markers_file.write(markers_text)
+    markers_file.close()
+
+
+def add_marker(text, recording_path, marker_timestamp=None):
+
+    markers_file_path = markers_file_from_file_path(recording_path)
+
+    with open(markers_file_path, 'a') as f:
+        stamp = timestamp(recording_path) if marker_timestamp is None else marker_timestamp
         marker_text = f'{stamp} {text}\n'
         f.write(marker_text)
+    
+    sort_markers_file_timestamps(markers_file_path)
 
     recording_name = os.path.basename(recording_path)
     print(f'Created marker for {recording_name} → {marker_text}', end='')
-    return stamp, recording_path
+    return stamp
 
 
 def wait_and_transcribe(input_path, marker_timestamp, transcript_padding_seconds, transcript_duration_seconds, initial_prompt, whisper_model='tiny'):
@@ -292,6 +327,7 @@ if __name__ == '__main__':
     opt = parser.parse_args()
 
     marker_timestamps = None
+    marker_timestamp = opt.timestamp
     whisper_model = opt.model
 
     if whisper_model not in WHISPER_MODELS:
@@ -299,21 +335,28 @@ if __name__ == '__main__':
         whisper_model = 'tiny'
     print(f'Using Whisper\'s {whisper_model} model.')
 
+    recording_path = opt.file if opt.file is not None else last_modified_file_from_path(opt.directory)
+    markers_file_path = markers_file_from_file_path(recording_path)
 
     if opt.timestamp is None:
-        # Add marker to input file or last modified file in directory.
-        marker_timestamp, recording_path = add_marker(opt.text, opt.file, opt.directory)
-    elif opt.file is not None:
-        # On-demand transcription.
-        recording_path = opt.file
+        # Add marker to input file.
+        marker_timestamp = add_marker(opt.text, recording_path)
+    else:
+        # On-demand transcription of a timestamp.
         marker_timestamp = opt.timestamp
-        if marker_timestamp == 'all':
-            marker_timestamps = markers_from_file(f'{recording_path}.markers.txt')
 
+        if marker_timestamp == 'all':
+            marker_timestamps = markers_from_file(markers_file_path)     
+        elif len(marker_timestamp.split(',')) > 1:
+            marker_timestamps = marker_timestamp.split(',')
+    
     marker_timestamps = [marker_timestamp] if marker_timestamps is None else marker_timestamps
 
     for _timestamp in marker_timestamps:
         
+        if _timestamp not in markers_from_file(markers_file_path):
+            add_marker(opt.text, recording_path, _timestamp)
+
         print(f'Transcribing {_timestamp}...')
 
         transcript = wait_and_transcribe(
@@ -331,7 +374,7 @@ if __name__ == '__main__':
             add_marker_transcript(
                 transcript['text'],
                 _timestamp,
-                f'{recording_path}.markers.txt'
+                markers_file_from_file_path(recording_path)
             )
 
 
