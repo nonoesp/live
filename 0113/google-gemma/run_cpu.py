@@ -1,3 +1,4 @@
+# https://huggingface.co/google/gemma-2b-it#running-the-model-on-a-cpu
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("google/gemma-2b-it")
