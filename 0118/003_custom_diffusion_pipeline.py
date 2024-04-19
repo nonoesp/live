@@ -10,7 +10,7 @@ from utils import clean_prompt, ddyymm_hhmmss
 
 # Config
 TORCH_DEVICE = 'mps'
-SEED = 124
+SEED = 123
 
 # Load the autoencoder model
 vae = AutoencoderKL.from_pretrained('runwayml/stable-diffusion-v1-5', subfolder='vae')
@@ -36,11 +36,11 @@ text_encoder.to(TORCH_DEVICE)
 unet.to(TORCH_DEVICE)
 
 # Image generation parameters
-prompt = ["oil painting of a gray rock in the jungle, open space"]
+prompt = ["a gold figurine in a minimalist interior space, hyper realistic, masterpiece, professional photography, dark background"]
 cleaned_prompt = clean_prompt(prompt[0])
 width = 1024
 height = 512
-num_inference_steps = 50
+num_inference_steps = 100
 guidance_scale = 7.5 # Scale for classifier-free guidance
 # generator = torch.Generator(TORCH_DEVICE).manual_seed(SEED)
 generator = torch.manual_seed(SEED)

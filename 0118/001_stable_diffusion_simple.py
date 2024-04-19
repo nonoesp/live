@@ -2,7 +2,7 @@
 Diffusion with a stable diffusion pipeline.
 '''
 
-from diffusers import StableDiffusionPipeline, AutoencoderKL
+from diffusers import StableDiffusionPipeline
 from utils import clean_prompt, ddyymm_hhmmss
 import torch
 
