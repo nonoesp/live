@@ -1,3 +1,4 @@
+import os
 import re
 from datetime import datetime
 
@@ -12,3 +13,8 @@ def clean_prompt(prompt):
     # Optionally, truncate to avoid very long filenames
     clean_prompt = clean_prompt[:255]
     return clean_prompt
+
+def ensure_dir(dir):
+    '''Creates the given directories if they don't exist.'''
+    if not os.path.exists(dir):
+        os.makedirs(dir)
